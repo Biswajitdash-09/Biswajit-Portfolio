@@ -1,0 +1,72 @@
+/* Timeline Styles */
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 220px;
+  width: 2px;
+  height: 100%;
+  background: var(--gradient-primary);
+}
+
+.timelineDate {
+  text-align: right;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  padding-top: var(--spacing-lg);
+  padding-right: var(--spacing-md);
+  line-height: 1.4;
+}
+
+.timelineContent {
+  padding: var(--spacing-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.timelineTitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-primary);
+}
+
+.timelineCompany {
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.timelineGrade {
+  font-size: var(--font-size-base);
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.timelineDescription {
+  list-style: disc;
+  padding-left: var(--spacing-lg);
+  color: var(--color-text-secondary);
+}
+
+.timelineDescription li {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timelineDate {
+    text-align: left;
+  }
+}

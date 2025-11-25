@@ -1,0 +1,29 @@
+/* About Section */
+.aboutContent {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aboutText {
+  text-align: center;
+}
+
+.aboutIntro {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.aboutText p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.8;
+}
+
+.aboutStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}

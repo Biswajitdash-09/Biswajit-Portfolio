@@ -1,0 +1,97 @@
+/* Education Timeline - reuse Experience styles */
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 220px;
+  width: 2px;
+  height: 100%;
+  background: var(--gradient-primary);
+}
+
+.timelineDate {
+  text-align: right;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  padding-top: var(--spacing-lg);
+  padding-right: var(--spacing-md);
+  line-height: 1.4;
+}
+
+.timelineContent {
+  padding: var(--spacing-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.timelineTitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-primary);
+}
+
+.timelineCompany {
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.timelineGrade {
+  font-size: var(--font-size-base);
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.subsectionTitle {
+  font-size: var(--font-size-3xl);
+  margin: var(--spacing-3xl) 0 var(--spacing-xl);
+  text-align: center;
+}
+
+.certificationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.certIcon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+.certTitle {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.certIssuer {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timelineDate {
+    text-align: left;
+  }
+
+  .certificationsGrid {
+    grid-template-columns: 1fr;
+  }
+}
