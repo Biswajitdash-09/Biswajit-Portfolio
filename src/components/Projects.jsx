@@ -104,6 +104,8 @@ const Projects = () => {
                 {!loadedImages[index] && (
                   <div className={styles.skeleton}>
                     <div className={styles.skeletonShimmer}></div>
+                    <div className={styles.skeletonIcon}></div>
+                    <span className={styles.skeletonText}>Loading preview...</span>
                   </div>
                 )}
                 <img
