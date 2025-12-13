@@ -1,9 +1,46 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import styles from '../styles/Hero.module.css'
 
 const Hero = () => {
   const canvasRef = useRef(null)
+
+  // Typing animation state
+  const roles = [
+    'Full-Stack AI Web Developer',
+    'React & TypeScript Developer',
+    'AI Tools Enthusiast',
+    'Problem Solver'
+  ]
+  const [displayText, setDisplayText] = useState('')
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  // Typing effect
+  useEffect(() => {
+    const currentRole = roles[roleIndex]
+    const typeSpeed = isDeleting ? 50 : 100
+    const pauseTime = 2000
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (displayText.length < currentRole.length) {
+          setDisplayText(currentRole.slice(0, displayText.length + 1))
+        } else {
+          setTimeout(() => setIsDeleting(true), pauseTime)
+        }
+      } else {
+        if (displayText.length > 0) {
+          setDisplayText(displayText.slice(0, -1))
+        } else {
+          setIsDeleting(false)
+          setRoleIndex((prev) => (prev + 1) % roles.length)
+        }
+      }
+    }, typeSpeed)
+
+    return () => clearTimeout(timeout)
+  }, [displayText, isDeleting, roleIndex])
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -16,21 +53,21 @@ const Hero = () => {
       0.1,
       1000
     )
-    
+
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
       alpha: true,
       antialias: true
     })
-    
+
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    
+
     camera.position.z = 5
 
     // Create geometric shapes - positioned at edges to not block content
     const shapes = []
-    
+
     // Add Torus - far left
     const torusGeometry = new THREE.TorusGeometry(0.7, 0.2, 16, 100)
     const torusMaterial = new THREE.MeshStandardMaterial({
@@ -187,7 +224,8 @@ const Hero = () => {
             <p className={`${styles.heroGreeting} fade-in`}>Hello, I'm</p>
             <h1 className={`${styles.heroName} gradient-text fade-in-up`}>Biswajit Dash</h1>
             <p className={`${styles.heroTitle} fade-in-up-delay`}>
-              Full-Stack AI Web Developer
+              <span className={styles.typingText}>{displayText}</span>
+              <span className={styles.cursor}>|</span>
             </p>
             <p className={`${styles.heroDescription} fade-in-up-delay-2`}>
               Crafting responsive, real-time applications with modern stacks,
@@ -218,7 +256,7 @@ const Hero = () => {
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
               </a>
-              <a 
+              <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=biswajitdash929@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -6,14 +6,43 @@ const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
+
+  const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'contact']
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
 
+    // IntersectionObserver for active section detection
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    }
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId)
+      if (element) observer.observe(element)
+    })
+
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
+    }
   }, [])
 
   const handleLinkClick = (e, targetId) => {
@@ -26,7 +55,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav 
+    <nav
       className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}
       id="navbar"
     >
@@ -45,13 +74,17 @@ const Navbar = () => {
         </button>
         <div className={styles.navRight}>
           <ul className={`${styles.navMenu} ${isMenuOpen ? styles.active : ''}`}>
-            <li><a href="#home" className={styles.navLink} onClick={(e) => handleLinkClick(e, 'home')}>Home</a></li>
-            <li><a href="#about" className={styles.navLink} onClick={(e) => handleLinkClick(e, 'about')}>About</a></li>
-            <li><a href="#experience" className={styles.navLink} onClick={(e) => handleLinkClick(e, 'experience')}>Experience</a></li>
-            <li><a href="#projects" className={styles.navLink} onClick={(e) => handleLinkClick(e, 'projects')}>Projects</a></li>
-            <li><a href="#skills" className={styles.navLink} onClick={(e) => handleLinkClick(e, 'skills')}>Skills</a></li>
-            <li><a href="#education" className={styles.navLink} onClick={(e) => handleLinkClick(e, 'education')}>Education</a></li>
-            <li><a href="#contact" className={styles.navLink} onClick={(e) => handleLinkClick(e, 'contact')}>Contact</a></li>
+            {sections.map((section) => (
+              <li key={section}>
+                <a
+                  href={`#${section}`}
+                  className={`${styles.navLink} ${activeSection === section ? styles.activeLink : ''}`}
+                  onClick={(e) => handleLinkClick(e, section)}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </a>
+              </li>
+            ))}
           </ul>
           <button
             className={styles.themeToggle}
@@ -92,3 +125,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+
