@@ -1,6 +1,43 @@
+import { useEffect, useRef, useState } from 'react'
 import styles from '../styles/Experience.module.css'
 
 const Experience = () => {
+  const timelineRef = useRef(null)
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return
+
+      const timeline = timelineRef.current
+      const rect = timeline.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      // Calculate how much of the timeline is visible/scrolled
+      const timelineTop = rect.top
+      const timelineHeight = rect.height
+
+      // Start filling when timeline enters viewport, complete when it leaves
+      const startPoint = windowHeight * 0.8 // Start when 80% down viewport
+      const endPoint = windowHeight * 0.2 // End when 20% from top
+
+      let scrollProgress = 0
+
+      if (timelineTop < startPoint) {
+        const scrollDistance = startPoint - endPoint
+        const currentScroll = startPoint - timelineTop
+        scrollProgress = Math.min(Math.max(currentScroll / timelineHeight, 0), 1)
+      }
+
+      setProgress(scrollProgress * 100)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const experiences = [
     {
       date: 'Jun 2025 - Jul 2025',
@@ -38,7 +75,11 @@ const Experience = () => {
     <section className="section experience" id="experience">
       <div className="container">
         <h2 className="section-title">Work Experience</h2>
-        <div className={styles.timeline}>
+        <div className={styles.timeline} ref={timelineRef}>
+          <div
+            className={styles.timelineProgress}
+            style={{ height: `${progress}%` }}
+          />
           {experiences.map((exp, index) => (
             <div key={index} className="timeline-item glass-card">
               <div className={styles.timelineDate}>{exp.date}</div>
@@ -60,3 +101,4 @@ const Experience = () => {
 }
 
 export default Experience
+

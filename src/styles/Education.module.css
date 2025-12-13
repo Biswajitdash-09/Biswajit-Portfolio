@@ -6,6 +6,7 @@
   padding-left: 0;
 }
 
+/* Background line (gray) */
 .timeline::before {
   content: '';
   position: absolute;
@@ -13,7 +14,19 @@
   left: 220px;
   width: 2px;
   height: 100%;
+  background: rgba(102, 126, 234, 0.2);
+}
+
+/* Animated progress line */
+.timelineProgress {
+  position: absolute;
+  top: 0;
+  left: 220px;
+  width: 2px;
   background: var(--gradient-primary);
+  z-index: 1;
+  transition: height 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
 }
 
 .timelineDate {
@@ -84,6 +97,10 @@
 
 @media (max-width: 768px) {
   .timeline::before {
+    left: 20px;
+  }
+
+  .timelineProgress {
     left: 20px;
   }
 

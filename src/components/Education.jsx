@@ -1,6 +1,38 @@
+import { useEffect, useRef, useState } from 'react'
 import styles from '../styles/Education.module.css'
 
 const Education = () => {
+  const timelineRef = useRef(null)
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return
+
+      const timeline = timelineRef.current
+      const rect = timeline.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      const timelineTop = rect.top
+      const timelineHeight = rect.height
+      const startPoint = windowHeight * 0.8
+
+      let scrollProgress = 0
+
+      if (timelineTop < startPoint) {
+        const currentScroll = startPoint - timelineTop
+        scrollProgress = Math.min(Math.max(currentScroll / timelineHeight, 0), 1)
+      }
+
+      setProgress(scrollProgress * 100)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const education = [
     {
       date: 'Sep 2022 - Mar 2026',
@@ -35,7 +67,11 @@ const Education = () => {
     <section className="section education" id="education">
       <div className="container">
         <h2 className="section-title">Education</h2>
-        <div className={styles.timeline}>
+        <div className={styles.timeline} ref={timelineRef}>
+          <div
+            className={styles.timelineProgress}
+            style={{ height: `${progress}%` }}
+          />
           {education.map((edu, index) => (
             <div key={index} className="timeline-item glass-card">
               <div className={styles.timelineDate}>{edu.date}</div>
@@ -64,3 +100,4 @@ const Education = () => {
 }
 
 export default Education
+
