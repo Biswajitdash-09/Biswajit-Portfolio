@@ -9,6 +9,8 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Education from './components/Education'
 import Contact from './components/Contact'
+import CursorFollower from './components/CursorFollower'
+import BackToTop from './components/BackToTop'
 import Lenis from '@studio-freight/lenis'
 
 function App() {
@@ -70,6 +72,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
+        <CursorFollower />
         <Navbar />
         <Hero />
         <About />
@@ -78,9 +81,11 @@ function App() {
         <Skills />
         <Education />
         <Contact />
+        <BackToTop />
       </ThemeProvider>
     </ErrorBoundary>
   )
 }
 
 export default App
+
