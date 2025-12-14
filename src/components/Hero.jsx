@@ -234,7 +234,7 @@ const Hero = () => {
             <div className={`${styles.heroCta} fade-in-up-delay-3`}>
               <a href="#projects" className="btn btn-primary">View My Work</a>
               <a
-                href="/resume.pdf"
+                href="/Biswajit Dash Resume 1 .pdf"
                 download="Biswajit_Dash_Resume.pdf"
                 className={`btn ${styles.btnResume}`}
               >
