@@ -233,6 +233,16 @@ const Hero = () => {
             </p>
             <div className={`${styles.heroCta} fade-in-up-delay-3`}>
               <a href="#projects" className="btn btn-primary">View My Work</a>
+              <a
+                href="/resume.pdf"
+                download="Biswajit_Dash_Resume.pdf"
+                className={`btn ${styles.btnResume}`}
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M5 20h14v-2H5v2zm7-18L5.33 9h4.17v6h5v-6h4.17L12 2z" />
+                </svg>
+                Resume
+              </a>
               <a href="#contact" className="btn btn-secondary">Get In Touch</a>
             </div>
             <div className={`${styles.heroSocial} fade-in-up-delay-4`}>

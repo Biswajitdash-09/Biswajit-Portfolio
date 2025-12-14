@@ -66,6 +66,29 @@
   flex-wrap: wrap;
 }
 
+.btnResume {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btnResume svg {
+  transition: transform 0.3s ease;
+}
+
+.btnResume:hover {
+  background: var(--gradient-primary);
+  color: white;
+  border-color: transparent;
+}
+
+.btnResume:hover svg {
+  transform: translateY(3px);
+}
+
 .heroSocial {
   display: flex;
   gap: var(--spacing-md);
