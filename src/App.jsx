@@ -11,6 +11,8 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 import CursorFollower from './components/CursorFollower'
 import BackToTop from './components/BackToTop'
+import PageLoader from './components/PageLoader'
+import LazySection from './components/LazySection'
 import Lenis from '@studio-freight/lenis'
 
 function App() {
@@ -72,15 +74,26 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
+        <PageLoader />
         <CursorFollower />
         <Navbar />
         <Hero />
         <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Education />
-        <Contact />
+        <LazySection>
+          <Experience />
+        </LazySection>
+        <LazySection>
+          <Projects />
+        </LazySection>
+        <LazySection>
+          <Skills />
+        </LazySection>
+        <LazySection>
+          <Education />
+        </LazySection>
+        <LazySection>
+          <Contact />
+        </LazySection>
         <BackToTop />
       </ThemeProvider>
     </ErrorBoundary>
@@ -88,4 +101,5 @@ function App() {
 }
 
 export default App
+
 
