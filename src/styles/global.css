@@ -217,13 +217,22 @@ svg {
 }
 
 /* Lenis Smooth Scroll */
-html.lenis {
-    overflow: hidden;
-}
-
+html.lenis,
 html.lenis body {
     height: auto;
-    overflow: auto;
+}
+
+/* Hide the native scrollbar while keeping scroll functionality */
+html {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .lenis.lenis-smooth {
