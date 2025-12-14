@@ -150,9 +150,9 @@
 }
 
 .isActive .cloud1 {
-    transform: translate3d(-3em, 1em, 0);
+    transform: translate3d(-12em, 4em, 0);
 }
 
 .isActive .cloud2 {
-    transform: translate3d(-1em, 3em, 0);
+    transform: translate3d(-4em, 12em, 0);
 }
