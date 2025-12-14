@@ -217,9 +217,13 @@ svg {
 }
 
 /* Lenis Smooth Scroll */
-html.lenis,
+html.lenis {
+    overflow: hidden;
+}
+
 html.lenis body {
     height: auto;
+    overflow: auto;
 }
 
 .lenis.lenis-smooth {
