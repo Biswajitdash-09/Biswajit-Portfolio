@@ -5,8 +5,15 @@ const CursorFollower = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 })
     const [isVisible, setIsVisible] = useState(false)
     const [isHovering, setIsHovering] = useState(false)
+    const [isTouchDevice, setIsTouchDevice] = useState(false)
 
     useEffect(() => {
+        // Check for touch device
+        const checkTouch = window.matchMedia('(hover: none)').matches
+        setIsTouchDevice(checkTouch)
+
+        if (checkTouch) return
+
         const handleMouseMove = (e) => {
             setPosition({ x: e.clientX, y: e.clientY })
             setIsVisible(true)
@@ -28,14 +35,16 @@ const CursorFollower = () => {
                 target.tagName === 'BUTTON' ||
                 target.closest('a') ||
                 target.closest('button') ||
-                target.classList.contains('btn')
+                target.classList.contains('btn') ||
+                target.classList.contains('techTag') ||
+                target.classList.contains('filterBtn')
             setIsHovering(isInteractive)
         }
 
-        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mousemove', handleMouseMove, { passive: true })
         document.addEventListener('mouseleave', handleMouseLeave)
         document.addEventListener('mouseenter', handleMouseEnter)
-        document.addEventListener('mouseover', handleElementHover)
+        document.addEventListener('mouseover', handleElementHover, { passive: true })
 
         return () => {
             document.removeEventListener('mousemove', handleMouseMove)
@@ -45,10 +54,7 @@ const CursorFollower = () => {
         }
     }, [])
 
-    // Don't show on mobile/touch devices
-    if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
-        return null
-    }
+    if (isTouchDevice) return null
 
     return (
         <>
@@ -65,3 +71,4 @@ const CursorFollower = () => {
 }
 
 export default CursorFollower
+
