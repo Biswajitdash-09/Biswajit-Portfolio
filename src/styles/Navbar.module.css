@@ -277,6 +277,7 @@
 @media (max-width: 768px) {
   .navToggle {
     display: flex;
+    z-index: 1001;
   }
 
   .navMenu {
@@ -284,16 +285,35 @@
     top: 70px;
     left: 0;
     right: 0;
+    bottom: 0;
     flex-direction: column;
     background: rgba(10, 14, 39, 0.98);
     padding: var(--spacing-xl);
     gap: var(--spacing-md);
     display: none;
     border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    overflow-y: auto;
   }
 
   .navMenu.active {
     display: flex;
+  }
+
+  .navMenu li {
+    width: 100%;
+  }
+
+  .navLink {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
