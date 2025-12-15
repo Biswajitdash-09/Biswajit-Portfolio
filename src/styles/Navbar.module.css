@@ -281,19 +281,19 @@
   }
 
   .navMenu {
-    position: fixed;
-    top: 70px;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
-    bottom: 0;
     flex-direction: column;
     background: rgba(10, 14, 39, 0.98);
-    padding: var(--spacing-xl);
-    gap: var(--spacing-md);
+    backdrop-filter: blur(20px);
+    padding: var(--spacing-lg);
+    gap: 0;
     display: none;
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
-    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   }
 
   .navMenu.active {
@@ -302,18 +302,22 @@
 
   .navMenu li {
     width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .navMenu li:last-child {
+    border-bottom: none;
   }
 
   .navLink {
-    display: block;
+    display: flex;
     width: 100%;
     padding: var(--spacing-md) var(--spacing-lg);
     pointer-events: auto !important;
     cursor: pointer !important;
-    min-height: 48px;
-    display: flex;
     align-items: center;
     justify-content: center;
+    font-size: var(--font-size-lg);
   }
 }
 
