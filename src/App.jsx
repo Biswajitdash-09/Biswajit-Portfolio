@@ -29,6 +29,9 @@ function App() {
       touchMultiplier: 2,
     })
 
+    // Expose Lenis instance globally for navbar scrollTo
+    window.lenis = lenis
+
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)

@@ -48,16 +48,25 @@ const Navbar = () => {
     e.preventDefault()
     const targetElement = document.getElementById(targetId)
     if (targetElement) {
-      // Use window.scrollTo instead of scrollIntoView for Lenis compatibility
-      const navbarHeight = 80 // Account for fixed navbar
-      const elementPosition = targetElement.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
+      // Close mobile menu first
       setIsMenuOpen(false)
+
+      // Use Lenis scrollTo if available, otherwise fallback
+      if (window.lenis) {
+        window.lenis.scrollTo(targetElement, {
+          offset: -80, // Account for fixed navbar
+          duration: 1.2
+        })
+      } else {
+        // Fallback for cases where Lenis isn't ready
+        const navbarHeight = 80
+        const elementPosition = targetElement.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
     }
   }
 
