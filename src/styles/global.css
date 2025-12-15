@@ -584,10 +584,16 @@ a[target="_blank"] {
 @media (max-width: 768px) {
     .timeline-item {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
+        padding-left: 30px;
+        margin-left: 10px;
     }
 
     .timeline-item::before {
-        left: -8px;
+        left: -10px;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
     }
 }
