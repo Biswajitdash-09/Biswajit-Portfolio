@@ -1,9 +1,8 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Projects.module.css'
 
 const Projects = () => {
   const [loadedImages, setLoadedImages] = useState({})
-  const [activeFilter, setActiveFilter] = useState('All')
 
   const projects = [
     {
@@ -50,19 +49,6 @@ const Projects = () => {
     }
   ]
 
-  // Get all unique tags for filter buttons
-  const allTags = useMemo(() => {
-    const tags = new Set()
-    projects.forEach(p => p.tags.forEach(t => tags.add(t)))
-    return ['All', ...Array.from(tags).sort()]
-  }, [])
-
-  // Filter projects based on active filter
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === 'All') return projects
-    return projects.filter(p => p.tags.includes(activeFilter))
-  }, [activeFilter])
-
   const handleImageLoad = (index) => {
     setLoadedImages(prev => ({ ...prev, [index]: true }))
   }
@@ -105,28 +91,15 @@ const Projects = () => {
         }
       })
     }
-  }, [filteredProjects])
+  }, [])
 
   return (
     <section className="section projects" id="projects">
       <div className="container">
         <h2 className="section-title">Featured Projects</h2>
 
-        {/* Filter Buttons */}
-        <div className={styles.filterContainer}>
-          {allTags.slice(0, 8).map((tag) => (
-            <button
-              key={tag}
-              className={`${styles.filterBtn} ${activeFilter === tag ? styles.active : ''}`}
-              onClick={() => setActiveFilter(tag)}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-
         <div className={styles.projectsGrid}>
-          {filteredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <div key={project.title} className="project-card glass-card">
               <div className={styles.projectImage}>
                 {!loadedImages[index] && (
@@ -149,11 +122,7 @@ const Projects = () => {
                 <p className={styles.projectDescription}>{project.description}</p>
                 <div className={styles.projectTech}>
                   {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className={`${styles.techTag} ${activeFilter === tag ? styles.activeTag : ''}`}
-                      onClick={() => setActiveFilter(tag)}
-                    >
+                    <span key={i} className={styles.techTag}>
                       {tag}
                     </span>
                   ))}
