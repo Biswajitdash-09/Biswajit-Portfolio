@@ -585,15 +585,15 @@ a[target="_blank"] {
     .timeline-item {
         grid-template-columns: 1fr;
         gap: var(--spacing-sm);
-        padding-left: 30px;
-        margin-left: 10px;
+        padding-left: 20px;
+        margin-left: 25px;
     }
 
     .timeline-item::before {
-        left: -10px;
+        left: -5px;
         top: 8px;
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         border-width: 2px;
     }
 }

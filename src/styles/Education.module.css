@@ -97,16 +97,16 @@
 
 @media (max-width: 768px) {
   .timeline::before {
-    left: 10px;
+    left: 25px;
   }
 
   .timelineProgress {
-    left: 10px;
+    left: 25px;
   }
 
   .timelineDate {
     text-align: left;
-    padding-left: 35px;
+    padding-left: 25px;
     padding-top: var(--spacing-sm);
   }
 
