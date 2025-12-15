@@ -48,7 +48,15 @@ const Navbar = () => {
     e.preventDefault()
     const targetElement = document.getElementById(targetId)
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' })
+      // Use window.scrollTo instead of scrollIntoView for Lenis compatibility
+      const navbarHeight = 80 // Account for fixed navbar
+      const elementPosition = targetElement.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
       setIsMenuOpen(false)
     }
   }
