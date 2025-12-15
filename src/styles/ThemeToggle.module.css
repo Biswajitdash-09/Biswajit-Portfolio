@@ -2,7 +2,7 @@
 .switch {
     --font-size: 2.5px;
     --height: 10em;
-    --width: 24em;
+    --width: 18em;
     --margin: 0.5em;
     --color-night: rgba(15, 64, 91, 1);
     --color-day: rgba(91, 169, 211, 1);

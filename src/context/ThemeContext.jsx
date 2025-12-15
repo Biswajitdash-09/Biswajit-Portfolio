@@ -3,9 +3,8 @@ import { createContext, useState, useEffect } from 'react'
 export const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'dark'
-  })
+  // Always start with dark theme
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
