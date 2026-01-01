@@ -5,6 +5,30 @@ import styles from '../styles/Hero.module.css'
 const Hero = () => {
   const canvasRef = useRef(null)
 
+  // Handle smooth scroll navigation for buttons
+  const handleLinkClick = (e, targetId) => {
+    e.preventDefault()
+    const targetElement = document.getElementById(targetId)
+    if (targetElement) {
+      // Use Lenis scrollTo if available, otherwise fallback
+      if (window.lenis) {
+        window.lenis.scrollTo(targetElement, {
+          offset: -80, // Account for fixed navbar
+          duration: 1.2
+        })
+      } else {
+        // Fallback for cases where Lenis isn't ready
+        const navbarHeight = 80
+        const elementPosition = targetElement.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }
+  }
+
   // Typing animation state
   const roles = [
     'Full-Stack AI Web Developer',
@@ -232,7 +256,13 @@ const Hero = () => {
               utilizing AI tools to accelerate and optimize tasks
             </p>
             <div className={`${styles.heroCta} fade-in-up-delay-3`}>
-              <a href="#projects" className="btn btn-primary">View My Work</a>
+              <a
+                href="#projects"
+                className="btn btn-primary"
+                onClick={(e) => handleLinkClick(e, 'projects')}
+              >
+                View My Work
+              </a>
               <a
                 href="/Biswajit Dash Resume 1 .pdf"
                 download="Biswajit_Dash_Resume.pdf"
@@ -243,7 +273,13 @@ const Hero = () => {
                 </svg>
                 Resume
               </a>
-              <a href="#contact" className="btn btn-secondary">Get In Touch</a>
+              <a
+                href="#contact"
+                className="btn btn-secondary"
+                onClick={(e) => handleLinkClick(e, 'contact')}
+              >
+                Get In Touch
+              </a>
             </div>
             <div className={`${styles.heroSocial} fade-in-up-delay-4`}>
               <a
