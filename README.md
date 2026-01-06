@@ -135,7 +135,7 @@ public/
 
 ---
 
-## 📜 Available Scripts
+## 📜 Available Scripts to run 
 
 | Command | Description |
 |---------|-------------|
@@ -175,6 +175,7 @@ The site will automatically redeploy on every push to the `main` branch.
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
+
 
 <p align="center">
   Made with ❤️ by <a href="https://github.com/Biswajitdash-09">Biswajit Dash</a>
