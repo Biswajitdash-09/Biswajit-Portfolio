@@ -8,21 +8,21 @@ const Projects = () => {
     {
       title: 'Employee Management System - DRDO',
       description: 'Enterprise-level employee management system built for DRDO with role-based authentication, real-time data handling, and comprehensive employee lifecycle management features.',
-      image: 'https://image.thum.io/get/width/1200/https://emp-sync-drdo-og.vercel.app/',
+      image: '/employee-management-preview.png',
       tags: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'AI Tools'],
       link: 'https://emp-sync-drdo-og.vercel.app/'
     },
     {
       title: 'SafeGuard AI',
       description: 'AI-based moderation platform that detects harmful, abusive, and misleading content with 94% accuracy. Demonstrates real-time Hindi/Hinglish text filtering powered by BiLSTM + self-attention research.',
-      image: 'https://image.thum.io/get/width/1200/https://safe-guard-ai-biswajit.vercel.app/',
+      image: '/safeguard-ai-preview.png',
       tags: ['React', 'Vite', 'Tailwind CSS', 'BiLSTM', 'Self-Attention', 'Hindi NLP'],
       link: 'https://safe-guard-ai-biswajit.vercel.app/'
     },
     {
       title: 'Resume Builder',
       description: 'A professional resume builder used by 120+ peers to create ATS-friendly resumes with modern templates and real-time preview.',
-      image: 'https://image.thum.io/get/width/1200/https://resume-builder-biswajit.vercel.app/',
+      image: '/resume-builder-preview.png',
       tags: ['React', 'TypeScript', 'Tailwind CSS', 'ShadCN/UI'],
       link: 'https://resume-builder-biswajit.vercel.app/'
     },
