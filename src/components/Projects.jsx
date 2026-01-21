@@ -29,7 +29,7 @@ const Projects = () => {
     {
       title: 'Resume Ranker',
       description: 'AI-powered ATS resume score checker with downloadable reports and actionable feedback to improve resume quality.',
-      image: 'https://image.thum.io/get/width/1200/https://resume-ranker-biswajit.vercel.app/',
+      image: '/resume-ranker-preview.png',
       tags: ['React', 'TypeScript', 'Tailwind CSS', 'AI/ML'],
       link: 'https://resume-ranker-biswajit.vercel.app/'
     },
