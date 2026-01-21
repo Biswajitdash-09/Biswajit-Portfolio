@@ -36,7 +36,7 @@ const Projects = () => {
     {
       title: 'EduMentor AI',
       description: 'AI-powered e-learning platform with real-time course enrollment and video learning. Developed for IIT BBSR Hackathon.',
-      image: 'https://image.thum.io/get/width/1200/https://edumentor-ai-biswajit.vercel.app/',
+      image: '/edumentor-preview.png',
       tags: ['React', 'TypeScript', 'Supabase', 'PostgreSQL'],
       link: 'https://edumentor-ai-biswajit.vercel.app/'
     },
