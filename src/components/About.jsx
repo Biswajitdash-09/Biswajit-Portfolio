@@ -27,9 +27,10 @@ const About = () => {
 
   const animateCounters = () => {
     const statNumbers = document.querySelectorAll('.stat-number')
-    
+
     statNumbers.forEach(stat => {
       const target = parseInt(stat.getAttribute('data-target'))
+      const suffix = stat.getAttribute('data-suffix') || ''
       const duration = 2000
       const increment = target / (duration / 16)
       let current = 0
@@ -37,10 +38,10 @@ const About = () => {
       const updateCounter = () => {
         current += increment
         if (current < target) {
-          stat.textContent = Math.floor(current).toLocaleString()
+          stat.textContent = Math.floor(current).toLocaleString() + suffix
           requestAnimationFrame(updateCounter)
         } else {
-          stat.textContent = target.toLocaleString()
+          stat.textContent = target.toLocaleString() + suffix
         }
       }
 
@@ -68,7 +69,7 @@ const About = () => {
             </p>
             <div className={styles.aboutStats}>
               <div className="stat-card glass-card">
-                <h3 className="stat-number" data-target="120">0</h3>
+                <h3 className="stat-number" data-target="120" data-suffix="+">0</h3>
                 <p className="stat-label">Resume Builder Users</p>
               </div>
               <div className="stat-card glass-card">
