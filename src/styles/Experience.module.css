@@ -74,6 +74,35 @@
   line-height: 1.6;
 }
 
+.jobType {
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.timelineLocation {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+  margin-top: calc(-1 * var(--spacing-sm));
+}
+
+.skillTags {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--glass-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.skillIcon {
+  color: var(--color-primary);
+  font-size: var(--font-size-base);
+}
+
 @media (max-width: 768px) {
   .timeline::before {
     left: 25px;
